@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+.movie-detail {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings: "slnt" 0;
+
+  .movie-detail-wallpaper-image {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100vh;
+    width: 100vw;
+    object-fit: cover;
+    opacity: 0.3;
+    z-index: -1;
+  }
+
+  .movie-detail-information {
+    padding: 80px 150px;
+    color: white;
+
+    h1 {
+      margin: 0px;
+      font-size: 60px;
+    }
+
+    p {
+      font-size: 20px;
+      font-weight: normal;
+    }
+  }
+
+  .movie-detail-poster {
+    width: 400px;
+    height: 500px;
+  }
+}

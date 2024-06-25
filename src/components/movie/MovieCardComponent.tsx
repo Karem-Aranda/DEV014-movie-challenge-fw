@@ -1,5 +1,8 @@
 import { Movie } from "../../models/Movie";
+import { Link } from "react-router-dom";
+import { image500SrcUrl } from "../../services/APIService";
 import "../../styles/MovieCard.scss";
+//  <Link to={"movie-information"}>{movie.id}</Link>
 
 interface MovieCard {
   movie: Movie;
@@ -8,10 +11,9 @@ interface MovieCard {
 export function MovieCardComponent({ movie }: MovieCard) {
   return (
     <li className="movie">
-      <img
-        className="movie-poster"
-        src={"https://image.tmdb.org/t/p/w500/" + movie.poster}
-      />
+      <Link to={"/movie-detail/" + movie.id}>
+        <img className="movie-poster" src={image500SrcUrl + movie.poster} />
+      </Link>
       <div className="movie-information">
         <div className="movie-title-container">
           <h2 className="movie-title">{movie.title}</h2>
