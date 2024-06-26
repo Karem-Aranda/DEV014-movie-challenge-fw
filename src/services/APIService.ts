@@ -3,6 +3,7 @@ import {
   MovieResponse,
   MovieDetailsResponse,
   MovieDetails,
+  Genre,
 } from "../models/Movie";
 import { ApiKey } from "./constants";
 import { formatMovie, formatMovieDetails } from "../utils/transformers";
@@ -13,6 +14,8 @@ export const imageOriginalSrcUrl = "https://image.tmdb.org/t/p/original";
 interface GetMoviesParams {
   filters: {
     page: number;
+    genre: string;
+    year: string;
   };
 }
 
@@ -29,9 +32,21 @@ interface GetMoviesResponse {
 }
 
 export function getMovies(params: GetMoviesParams): Promise<GetMoviesResponse> {
-  const { page } = params.filters;
+  const { page, genre, year } = params.filters;
 
-  const movieListEndpoint = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc`;
+  let movieListEndpoint = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&sort_by=popularity.desc`;
+
+  if (page) {
+    movieListEndpoint += `&page=${page}`;
+  }
+
+  if (genre !== "-") {
+    movieListEndpoint += `&with_genres=${genre}`;
+  }
+
+  if (year !== "-") {
+    movieListEndpoint += `&primary_release_year=${year}`;
+  }
 
   const options = {
     method: "GET",

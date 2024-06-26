@@ -10,7 +10,15 @@ import "../styles/MovieDetail.scss";
 import { Loader } from "../components/Loader";
 
 export function MovieDetailView() {
-  const [movie, setMovie] = useState<MovieDetails>({});
+  const [movie, setMovie] = useState<MovieDetails>({
+    id: 0,
+    title: "",
+    poster: "",
+    releseaDate: 0,
+    genres: [],
+    description: "",
+    backgroundWallpaper: "",
+  });
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {

@@ -2,6 +2,7 @@
 
 import {
   Genre,
+  GenreResponse,
   Movie,
   MovieDetails,
   MovieDetailsResponse,
@@ -25,7 +26,7 @@ export function formatMovieDetails(movie: MovieDetailsResponse): MovieDetails {
     poster: movie.poster_path,
     //la fecha ya convertida a un objeto tipo fecha
     releseaDate: new Date(movie.release_date).getFullYear(),
-    genres: movie.genres,
+    genres: movie.genres.map((genre) => formatGenre(genre)),
     description: movie.overview,
     backgroundWallpaper: movie.backdrop_path,
   };
@@ -42,16 +43,24 @@ export function formatGenresToMap(movieGenres: Genre[]) {
 
   movieGenres.forEach((genre) => {
     if (!genres[`${genre.id}`]) {
-      genres[genre.id] = genre.name;
+      genres[genre.id] = genre.text;
     }
   });
+
+  return genres;
 }
 
 //guardarlo en un select - nav
-export function formatGenresToOptions(movieGenres: Genre[]) {
-  return movieGenres.map((genre) => {
-    return { id: genre.id, value: genre.id, text: genre.name };
-  });
+export function formatGenresToOptions(movieGenres: GenreResponse[]): Genre[] {
+  return movieGenres.map((genre) => formatGenre(genre));
+}
+
+export function formatGenre(genre: GenreResponse): Genre {
+  return {
+    id: genre.id,
+    value: genre.id.toString(),
+    text: genre.name,
+  };
 }
 
 /*[a, b, c, d, e, f];

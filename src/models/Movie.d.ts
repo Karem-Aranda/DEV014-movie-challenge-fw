@@ -36,7 +36,7 @@ export interface MovieDetailsResponse {
   belongs_to_collection: Collection;
   budget: number;
   //arrey //lista de generos
-  genres: Genre[];
+  genres: GenreResponse[];
   homepage: string;
   id: number;
   imdb_id: string;
@@ -67,9 +67,15 @@ export type Collection = {
   backdrop_path: string;
 };
 
-export type Genre = {
+export type GenreResponse = {
   id: number;
   name: string;
+};
+
+export type Genre = {
+  id: number;
+  value: string;
+  text: string;
 };
 
 export type Company = {
