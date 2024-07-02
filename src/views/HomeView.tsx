@@ -6,7 +6,6 @@ import { Loader } from "../components/Loader";
 import Pagination from "../components/Pagination";
 import { getMovieGenres } from "../services/MovieService";
 import { Navigation } from "../components/Navigation";
-import { formatGenresToMap } from "../utils/transformers";
 import { useSearchParams } from "react-router-dom";
 
 export function HomeView() {
@@ -20,6 +19,10 @@ export function HomeView() {
   const [selectedYear, setSelectedYear] = useState<string>(
     searchParams.get("year") || "-"
   );
+  const [sortBy, setSortBy] = useState<string>(
+    searchParams.get("sortBy") || "-"
+  );
+
   const [loading, setLoading] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<number>(
     (searchParams.get("page") as any) || 1
@@ -41,6 +44,8 @@ export function HomeView() {
     fetchData();
   }, []);
 
+  //cada que una variable cambie su valor, se ejecuta el useEffect
+  //Arrey de dependencias lo de currentPage y asi
   useEffect(() => {
     const fetchData = async () => {
       await fetchMovies();
@@ -51,17 +56,16 @@ export function HomeView() {
 
     setLoading(true);
     fetchData();
-  }, [currentPage, selectedGenre, selectedYear]);
+  }, [currentPage, selectedGenre, selectedYear, sortBy]);
 
   const fetchMovies = async () => {
-    const genreMap = formatGenresToMap(genres);
-
     try {
       const response = await getMovies({
         filters: {
           page: currentPage,
           genre: selectedGenre.toString(),
           year: selectedYear,
+          sortBy: sortBy,
         },
       });
       setMovies(response.movies);
@@ -106,15 +110,33 @@ export function HomeView() {
     setSearchParams(searchParams);
   };
 
+  const handleSortByChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    const sortByValue = event.target.value;
+    setSortBy(sortByValue);
+
+    searchParams.set("sort_by", sortByValue);
+    setSearchParams(searchParams);
+  };
+
   //Separar en dos funciones
   const handleOnClear = (param: string) => {
-    if (param === "year") {
-      setSelectedYear("-");
+    switch (param) {
+      case "year":
+        setSelectedYear("-");
+        searchParams.delete("year");
+        break;
+      case "genre":
+        setSelectedGenre("-");
+        searchParams.delete("genreId");
+        break;
+      case "sortBy":
+        setSortBy("-");
+        searchParams.delete("sort_by");
+        break;
+      default:
     }
 
-    if (param === "genre") {
-      setSelectedGenre("-");
-    }
+    setSearchParams(searchParams);
   };
   //condicional rendering --- loading ?(condicional ternario)
   //Parecido a un if else
@@ -130,8 +152,10 @@ export function HomeView() {
               yearOptions={years}
               selectedGenre={selectedGenre}
               selectedYear={selectedYear}
+              sortBy={sortBy}
               onGenreChange={handleGenreChange}
               onYearChange={handleYearChange}
+              onSortByChange={handleSortByChange}
               onClear={handleOnClear}
             />
             <MovieListComponent movies={movies} />

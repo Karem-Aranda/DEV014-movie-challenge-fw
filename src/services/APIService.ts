@@ -3,7 +3,6 @@ import {
   MovieResponse,
   MovieDetailsResponse,
   MovieDetails,
-  Genre,
 } from "../models/Movie";
 import { ApiKey } from "./constants";
 import { formatMovie, formatMovieDetails } from "../utils/transformers";
@@ -16,6 +15,7 @@ interface GetMoviesParams {
     page: number;
     genre: string;
     year: string;
+    sortBy: string;
   };
 }
 
@@ -32,9 +32,9 @@ interface GetMoviesResponse {
 }
 
 export function getMovies(params: GetMoviesParams): Promise<GetMoviesResponse> {
-  const { page, genre, year } = params.filters;
+  const { page, genre, year, sortBy } = params.filters;
 
-  let movieListEndpoint = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&sort_by=popularity.desc`;
+  let movieListEndpoint = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US`;
 
   if (page) {
     movieListEndpoint += `&page=${page}`;
@@ -48,6 +48,10 @@ export function getMovies(params: GetMoviesParams): Promise<GetMoviesResponse> {
     movieListEndpoint += `&primary_release_year=${year}`;
   }
 
+  if (sortBy !== "-") {
+    movieListEndpoint += `&sort_by=${sortBy}`;
+  }
+
   const options = {
     method: "GET",
     headers: {
@@ -59,18 +63,30 @@ export function getMovies(params: GetMoviesParams): Promise<GetMoviesResponse> {
   return fetch(movieListEndpoint, options)
     .then((response) => response.json())
     .then((response) => {
-      const responseMovieList = response.results;
-      const formattedMovies: Movie[] = responseMovieList.map(
-        (movie: MovieResponse) => formatMovie(movie)
-      );
-      const pagination: Pagination = {
-        currentPage: response.page,
-        totalPages: response.total_pages,
-      };
-      return {
-        metaData: { pagination },
-        movies: formattedMovies,
-      };
+      if (response.results) {
+        const responseMovieList = response.results;
+        const formattedMovies: Movie[] = responseMovieList.map(
+          (movie: MovieResponse) => formatMovie(movie)
+        );
+        const pagination: Pagination = {
+          currentPage: response.page,
+          totalPages: response.total_pages,
+        };
+        return {
+          metaData: { pagination },
+          movies: formattedMovies,
+        };
+      } else {
+        return {
+          metaData: {
+            pagination: {
+              currentPage: 1,
+              totalPages: 1,
+            },
+          },
+          movies: [],
+        };
+      }
     });
 }
 

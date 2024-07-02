@@ -2,7 +2,6 @@ import { Movie } from "../../models/Movie";
 import { Link } from "react-router-dom";
 import { image500SrcUrl } from "../../services/APIService";
 import "../../styles/MovieCard.scss";
-//  <Link to={"movie-information"}>{movie.id}</Link>
 
 interface MovieCard {
   movie: Movie;

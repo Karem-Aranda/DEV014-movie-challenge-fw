@@ -20,27 +20,32 @@ export function MovieDetailView() {
     backgroundWallpaper: "",
   });
   const [loading, setLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-  }, []);
-
   const { id } = useParams();
-  console.log(movie);
 
   useEffect(() => {
-    if (id) {
-      getMovieDetail(id).then((res) => {
-        setMovie(res);
-      });
-    }
+    fetchMovieDetails();
   }, []);
+
+  const fetchMovieDetails = async () => {
+    try {
+      setLoading(true);
+
+      const response = await getMovieDetail(id || "");
+
+      setMovie(response);
+      setLoading(false);
+    } catch (error: any) {
+      setLoading(false);
+    }
+  };
 
   const renderGenres = () => {
     if (movie.genres) {
-      return movie.genres.map((genre) => <li key={genre.id}>{genre.name}</li>);
+      return movie.genres.map((genre) => (
+        <li key={genre.id} data-testid={"movie-genre-" + genre.id}>
+          {genre.text}
+        </li>
+      ));
     }
   };
 
@@ -55,12 +60,13 @@ export function MovieDetailView() {
             src={imageOriginalSrcUrl + movie.backgroundWallpaper}
           />
           <div className="movie-detail-information">
-            <h1>{movie.title}</h1>
+            <h1 data-testid="movie-title">{movie.title}</h1>
             <div>
-              <p>{movie.description}</p>
+              <p data-testid="movie-description">{movie.description}</p>
               <ul>{renderGenres()}</ul>
-              <p>{movie.releseaDate}</p>
+              <p data-testid="movie-release-date">{movie.releseaDate}</p>
               <img
+                data-testid="movie-poster"
                 className="movie-detail-poster"
                 src={image500SrcUrl + movie.poster}
               />

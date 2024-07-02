@@ -23,9 +23,9 @@ const Pagination: React.FC<PaginatorProps> = ({
       onSelectPage(currentPage + 1);
     }
   };
-
+  // Número de casillas a mostrar
   const renderPageNumbers = () => {
-    const pagesToShow = 20; // Número de casillas a mostrar
+    const pagesToShow = 20;
     const halfPagesToShow = Math.floor(pagesToShow / 2);
     let startPage = Math.max(1, currentPage - halfPagesToShow);
     let endPage = startPage + pagesToShow - 1;
@@ -60,7 +60,7 @@ const Pagination: React.FC<PaginatorProps> = ({
       <button onClick={handleNext} disabled={currentPage === totalPages}>
         Next
       </button>
-      <span>{`Page ${currentPage} of ${totalPages}`}</span>
+      <span className="pagination-text">{`Page ${currentPage} of ${totalPages}`}</span>
     </div>
   );
 };

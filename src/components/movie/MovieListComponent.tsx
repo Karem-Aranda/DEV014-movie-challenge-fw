@@ -7,10 +7,15 @@ interface MovieListComponent {
 }
 
 export function MovieListComponent({ movies }: MovieListComponent) {
+  const moviePage = 10;
+
+  // Solo muestra 10 peliculas
+  const filterMovies = movies.slice(0, moviePage);
+
   return (
     //el key es para que react identifique en el virtual dom que va a cambiar
     <ul className="movie-list">
-      {movies.map((movie) => (
+      {filterMovies.map((movie) => (
         <MovieCardComponent key={movie.id} movie={movie} />
       ))}
     </ul>

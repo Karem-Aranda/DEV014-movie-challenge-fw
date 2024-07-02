@@ -1,10 +1,8 @@
-import { GenreResponse } from "../models/Movie";
+import { Genre, GenreResponse } from "../models/Movie";
 import { formatGenre } from "../utils/transformers";
 import { ApiKey } from "./constants";
-//import { formatMovie, formatGenresToMap } from "../utils/transformers";
-//import { Movie } from "../models/Movie ";
 
-export function getMovieGenres(): Promise<any> {
+export function getMovieGenres(): Promise<Genre[]> {
   const genreEndPoint = `https://api.themoviedb.org/3/genre/movie/list?language=en`;
 
   const options = {
@@ -18,6 +16,12 @@ export function getMovieGenres(): Promise<any> {
   return fetch(genreEndPoint, options)
     .then((response) => response.json())
     .then((response) => {
-      return response.genres.map((genre: GenreResponse) => formatGenre(genre));
+      if (response.genres) {
+        return response.genres.map((genre: GenreResponse) =>
+          formatGenre(genre)
+        );
+      } else {
+        return [];
+      }
     });
 }

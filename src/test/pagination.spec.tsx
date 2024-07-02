@@ -1,4 +1,22 @@
-/*Escribir pruebas unitarias para el componente Pagination, 
-cubriendo escenarios como hacer clic en botones de paginación y validar cambios
- en la interfaz de usuario 
-basados en diferentes accesorios*/
+import { render, screen, fireEvent } from "@testing-library/react";
+import Pagination from "../components/Pagination";
+
+describe("componente de paginación", () => {
+  it("se le da click a los botones correctamente", () => {
+    const mockOnSelectPage = jest.fn();
+    render(
+      <Pagination
+        currentPage={1}
+        totalPages={6}
+        onSelectPage={mockOnSelectPage}
+      />
+    );
+
+    const buttons = screen.getAllByRole("button");
+    buttons.forEach((button) => {
+      fireEvent.click(button);
+    });
+
+    expect(mockOnSelectPage).toHaveBeenCalled();
+  });
+});

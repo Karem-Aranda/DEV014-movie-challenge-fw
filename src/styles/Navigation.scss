@@ -1,0 +1,26 @@
+.main-container {
+  display: flex;
+  justify-content: center;
+  background-color: #08192b;
+
+  .filter-genre {
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .filter-year {
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .filter-sortby {
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+}
