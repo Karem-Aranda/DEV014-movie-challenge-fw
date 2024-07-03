@@ -2,7 +2,7 @@ import { render } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { MovieListComponent } from "../components/movie/MovieListComponent";
 import { Movie } from "../models/Movie";
-// import {} from "./datasource.json";
+
 import "@testing-library/jest-dom/jest-globals";
 import "@testing-library/jest-dom";
 

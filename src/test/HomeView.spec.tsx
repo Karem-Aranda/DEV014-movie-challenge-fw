@@ -3,10 +3,6 @@ import { HomeView } from "../views/HomeView";
 import { Movie } from "../models/Movie";
 import { MemoryRouter } from "react-router";
 
-//import { Loader } from "../components/Loader";
-
-//en caso de que este mockeado ...
-
 jest.mock("../services/constants", () => ({ ApiKey: "mocked-token" }));
 
 const movieListMock = {

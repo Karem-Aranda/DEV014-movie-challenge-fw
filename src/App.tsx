@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { HomeView } from "./views/HomeView";
 import { MovieDetailView } from "./views/MovieDetailView";
-import "./App.scss";
+import "./styles/index.scss";
 
 function App() {
   return (

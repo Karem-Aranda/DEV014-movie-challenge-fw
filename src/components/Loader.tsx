@@ -1,5 +1,3 @@
-import "../styles/Loader.scss";
-
 export function Loader() {
   return (
     <div data-testid="loader" className="loader-container">

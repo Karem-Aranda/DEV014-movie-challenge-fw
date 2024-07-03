@@ -25,7 +25,7 @@ export function HomeView() {
 
   const [loading, setLoading] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<number>(
-    (searchParams.get("page") as any) || 1
+    parseInt(searchParams.get("page") as any) || 1
   );
   const [totalPages, setTotalPages] = useState<number>(1);
 
@@ -45,7 +45,7 @@ export function HomeView() {
   }, []);
 
   //cada que una variable cambie su valor, se ejecuta el useEffect
-  //Arrey de dependencias lo de currentPage y asi
+  //Arrey de dependencias = currentPage
   useEffect(() => {
     const fetchData = async () => {
       await fetchMovies();
@@ -90,8 +90,11 @@ export function HomeView() {
 
     if (page > 1) {
       searchParams.set("page", page.toString());
-      setSearchParams(searchParams);
+    } else {
+      searchParams.delete("page");
     }
+
+    setSearchParams(searchParams);
   };
 
   const handleGenreChange = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -141,42 +144,26 @@ export function HomeView() {
   //condicional rendering --- loading ?(condicional ternario)
   //Parecido a un if else
   return (
-    <>
-      <div className="background-container">
-        {loading ? (
-          <Loader />
-        ) : (
-          <div>
-            <Navigation
-              genreOptions={genres}
-              yearOptions={years}
-              selectedGenre={selectedGenre}
-              selectedYear={selectedYear}
-              sortBy={sortBy}
-              onGenreChange={handleGenreChange}
-              onYearChange={handleYearChange}
-              onSortByChange={handleSortByChange}
-              onClear={handleOnClear}
-            />
-            <MovieListComponent movies={movies} />
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onSelectPage={handlePageChange}
-            />
-          </div>
-        )}
+    <div className="background-container">
+      <Navigation
+        genreOptions={genres}
+        yearOptions={years}
+        selectedGenre={selectedGenre}
+        selectedYear={selectedYear}
+        sortBy={sortBy}
+        onGenreChange={handleGenreChange}
+        onYearChange={handleYearChange}
+        onSortByChange={handleSortByChange}
+        onClear={handleOnClear}
+      />
+      <div style={{ display: "flex", height: "780px" }}>
+        {loading ? <Loader /> : <MovieListComponent movies={movies} />}
       </div>
-    </>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onSelectPage={handlePageChange}
+      />
+    </div>
   );
 }
-
-// VirtualDOM
-// useEffect -- se ejecuta al iniciar un componente stateless
-// useState - se utiliza para guardar estados
-// rest operators --- ??
-// spread operators  ----- ?
-// Destructuring
-
-// TypeScript
-// - Genericos --- ???

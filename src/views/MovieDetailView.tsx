@@ -6,7 +6,6 @@ import {
   imageOriginalSrcUrl,
 } from "../services/APIService";
 import { MovieDetails } from "../models/Movie";
-import "../styles/MovieDetail.scss";
 import { Loader } from "../components/Loader";
 
 export function MovieDetailView() {
@@ -42,7 +41,11 @@ export function MovieDetailView() {
   const renderGenres = () => {
     if (movie.genres) {
       return movie.genres.map((genre) => (
-        <li key={genre.id} data-testid={"movie-genre-" + genre.id}>
+        <li
+          key={genre.id}
+          data-testid={"movie-genre-" + genre.id}
+          className="movie-detail-genre"
+        >
           {genre.text}
         </li>
       ));
@@ -52,7 +55,16 @@ export function MovieDetailView() {
   return (
     <div className="movie-detail">
       {loading ? (
-        <Loader />
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          <Loader />
+        </div>
       ) : (
         <>
           <img
@@ -60,16 +72,23 @@ export function MovieDetailView() {
             src={imageOriginalSrcUrl + movie.backgroundWallpaper}
           />
           <div className="movie-detail-information">
-            <h1 data-testid="movie-title">{movie.title}</h1>
-            <div>
-              <p data-testid="movie-description">{movie.description}</p>
+            <div className="movie-detail-information-container">
+              <h1 data-testid="movie-title">{movie.title}</h1>
               <ul>{renderGenres()}</ul>
-              <p data-testid="movie-release-date">{movie.releseaDate}</p>
-              <img
-                data-testid="movie-poster"
-                className="movie-detail-poster"
-                src={image500SrcUrl + movie.poster}
-              />
+              <p data-testid="movie-release-date">
+                {" "}
+                Relesea date : {movie.releseaDate}
+              </p>
+              <p data-testid="movie-description">{movie.description}</p>
+            </div>
+            <div className="movie-detail-poster-container">
+              <div>
+                <img
+                  data-testid="movie-poster"
+                  className="movie-detail-poster"
+                  src={image500SrcUrl + movie.poster}
+                />
+              </div>
             </div>
           </div>
         </>

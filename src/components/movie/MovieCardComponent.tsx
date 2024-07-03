@@ -1,7 +1,6 @@
 import { Movie } from "../../models/Movie";
 import { Link } from "react-router-dom";
 import { image500SrcUrl } from "../../services/APIService";
-import "../../styles/MovieCard.scss";
 
 interface MovieCard {
   movie: Movie;

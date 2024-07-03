@@ -1,4 +1,3 @@
-import "../styles/Pagination.scss";
 import React from "react";
 
 interface PaginatorProps {
@@ -24,7 +23,7 @@ const Pagination: React.FC<PaginatorProps> = ({
     }
   };
   // Número de casillas a mostrar
-  const renderPageNumbers = () => {
+  const renderPaginationButtons = () => {
     const pagesToShow = 20;
     const halfPagesToShow = Math.floor(pagesToShow / 2);
     let startPage = Math.max(1, currentPage - halfPagesToShow);
@@ -36,15 +35,17 @@ const Pagination: React.FC<PaginatorProps> = ({
     }
 
     const pageNumbers = [];
+
     for (let i = startPage; i <= endPage; i++) {
       pageNumbers.push(
-        <button
-          key={i}
-          onClick={() => onSelectPage(i)}
-          className={currentPage === i ? "active" : ""}
-        >
-          {i}
-        </button>
+        <li key={i}>
+          <button
+            onClick={() => onSelectPage(i)}
+            className={currentPage === i ? "active" : ""}
+          >
+            {i}
+          </button>
+        </li>
       );
     }
 
@@ -53,14 +54,19 @@ const Pagination: React.FC<PaginatorProps> = ({
 
   return (
     <div className="pagination">
-      <button onClick={handlePrevious} disabled={currentPage === 1}>
-        Previous
-      </button>
-      {renderPageNumbers()}
-      <button onClick={handleNext} disabled={currentPage === totalPages}>
-        Next
-      </button>
-      <span className="pagination-text">{`Page ${currentPage} of ${totalPages}`}</span>
+      <ul>
+        {currentPage > 1 && (
+          <li>
+            <button onClick={handlePrevious}>Back</button>
+          </li>
+        )}
+        {renderPaginationButtons()}
+        {currentPage !== totalPages && (
+          <li>
+            <button onClick={handleNext}>Next</button>
+          </li>
+        )}
+      </ul>
     </div>
   );
 };

@@ -1,6 +1,3 @@
-/*cuando corres jest no se esta corriendo la app como tal, se esta corriendo otra app simulada, variable de entorno
-se tiene que simular(mockear) en donde se este usando apikey*/
-
 import { getMovies } from "../services/APIService";
 
 jest.mock("../services/constants", () => ({ ApiKey: "mocked-token" }));

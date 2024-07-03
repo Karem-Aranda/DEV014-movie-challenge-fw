@@ -1,5 +1,5 @@
 //interfaces ;
-//tyoe , -- como si fuera objeto de JS
+//type , -- como si fuera objeto de JS
 export interface Movie {
   id: number;
   title: string;

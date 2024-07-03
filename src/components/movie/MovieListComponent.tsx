@@ -1,16 +1,15 @@
 import { Movie } from "../../models/Movie";
 import { MovieCardComponent } from "./MovieCardComponent";
-import "../../styles/MovieList.scss";
 
 interface MovieListComponent {
   movies: Movie[];
 }
 
 export function MovieListComponent({ movies }: MovieListComponent) {
-  const moviePage = 10;
+  const maxItemsPerPage = 12;
 
   // Solo muestra 10 peliculas
-  const filterMovies = movies.slice(0, moviePage);
+  const filterMovies = movies.slice(0, maxItemsPerPage);
 
   return (
     //el key es para que react identifique en el virtual dom que va a cambiar

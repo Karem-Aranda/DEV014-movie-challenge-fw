@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60.25% </span>
+                <span class="strong">59.49% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>47/78</span>
+                <span class='fraction'>47/79</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">64.28% </span>
+                <span class="strong">60% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>9/14</span>
+                <span class='fraction'>9/15</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">59.74% </span>
+                <span class="strong">58.97% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>46/77</span>
+                <span class='fraction'>46/78</span>
             </div>
         
             
@@ -242,10 +242,7 @@
 <a name='L177'></a><a href='#L177'>177</a>
 <a name='L178'></a><a href='#L178'>178</a>
 <a name='L179'></a><a href='#L179'>179</a>
-<a name='L180'></a><a href='#L180'>180</a>
-<a name='L181'></a><a href='#L181'>181</a>
-<a name='L182'></a><a href='#L182'>182</a>
-<a name='L183'></a><a href='#L183'>183</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L180'></a><a href='#L180'>180</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -337,15 +334,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -365,6 +357,14 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -384,12 +384,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -454,7 +448,7 @@ export function HomeView() {
 &nbsp;
   const [loading, setLoading] = useState&lt;boolean&gt;(false);
   const [currentPage, setCurrentPage] = useState&lt;number&gt;(
-    (searchParams.get("page") as any) || 1
+    parseInt(searchParams.get("page") as any) || 1
   );
   const [totalPages, setTotalPages] = useState&lt;number&gt;(1);
 &nbsp;
@@ -517,10 +511,13 @@ export function HomeView() {
   const handlePageChange = <span class="fstat-no" title="function not covered" >(p</span>age: number) =&gt; {
 <span class="cstat-no" title="statement not covered" >    setCurrentPage(page);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (page &gt; 1) {</span>
+<span class="cstat-no" title="statement not covered" >    if (page &gt; 1) {</span>
 <span class="cstat-no" title="statement not covered" >      searchParams.set("page", page.toString());</span>
-<span class="cstat-no" title="statement not covered" >      setSearchParams(searchParams);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      searchParams.delete("page");</span>
     }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    setSearchParams(searchParams);</span>
   };
 &nbsp;
   const handleGenreChange = <span class="fstat-no" title="function not covered" >(e</span>vent: ChangeEvent&lt;HTMLSelectElement&gt;) =&gt; {
@@ -570,33 +567,27 @@ export function HomeView() {
   //condicional rendering --- loading ?(condicional ternario)
   //Parecido a un if else
   return (
-    &lt;&gt;
-      &lt;div className="background-container"&gt;
-        {loading ? (
-          &lt;Loader /&gt;
-        ) : (
-          &lt;div&gt;
-            &lt;Navigation
-              genreOptions={genres}
-              yearOptions={years}
-              selectedGenre={selectedGenre}
-              selectedYear={selectedYear}
-              sortBy={sortBy}
-              onGenreChange={handleGenreChange}
-              onYearChange={handleYearChange}
-              onSortByChange={handleSortByChange}
-              onClear={handleOnClear}
-            /&gt;
-            &lt;MovieListComponent movies={movies} /&gt;
-            &lt;Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onSelectPage={handlePageChange}
-            /&gt;
-          &lt;/div&gt;
-        )}
+    &lt;div className="background-container"&gt;
+      &lt;Navigation
+        genreOptions={genres}
+        yearOptions={years}
+        selectedGenre={selectedGenre}
+        selectedYear={selectedYear}
+        sortBy={sortBy}
+        onGenreChange={handleGenreChange}
+        onYearChange={handleYearChange}
+        onSortByChange={handleSortByChange}
+        onClear={handleOnClear}
+      /&gt;
+      &lt;div style={{ display: "flex", height: "780px" }}&gt;
+        {loading ? &lt;Loader /&gt; : &lt;MovieListComponent movies={movies} /&gt;}
       &lt;/div&gt;
-    &lt;/&gt;
+      &lt;Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onSelectPage={handlePageChange}
+      /&gt;
+    &lt;/div&gt;
   );
 }
 &nbsp;
@@ -616,7 +607,7 @@ export function HomeView() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-07-02T14:44:10.363Z
+                at 2024-07-03T00:48:03.243Z
             </div>
         <script src="../prettify.js"></script>
         <script>

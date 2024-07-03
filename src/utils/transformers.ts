@@ -34,6 +34,7 @@ export function formatMovieDetails(movie: MovieDetailsResponse): MovieDetails {
 
 // el map es para regresar algo (almacena las cosas y las regresa)
 //guardalo en un estado
+
 export function formatGenresToMap(movieGenres: Genre[]) {
   // Comenzar a iterar en el array
   // Dentro de cada iteracion, tienes que ver si el elemento ya existe en el map/objeto
@@ -62,13 +63,3 @@ export function formatGenre(genre: GenreResponse): Genre {
     text: genre.name,
   };
 }
-
-/*[a, b, c, d, e, f];
-
-personas[nombre];
-genres = {
-  1: "terror",
-  2: "amor",
-  3: "sci-fi",
-};
-*/

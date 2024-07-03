@@ -1,5 +1,4 @@
 import { ChangeEvent } from "react";
-import "../styles/Navigation.scss";
 import { Genre } from "../models/Movie";
 
 // Define las propiedades que recibe el componente
@@ -26,17 +25,19 @@ export function Navigation({
   onSortByChange,
   onClear,
 }: NavOptionsProps) {
+  const defaultValue = "-";
+
   return (
     <>
-      <div className="main-container">
-        <div className="filter-genre">
+      <div className="navigation-container">
+        <div className="filter">
           <select
             data-testid="filterByGenre"
             value={selectedGenre}
             onChange={onGenreChange}
           >
-            <option disabled value="-">
-              Selecciona un género
+            <option disabled value={defaultValue}>
+              Género
             </option>
             {genreOptions.map((option) => (
               <option key={option.id} value={option.value}>
@@ -44,22 +45,24 @@ export function Navigation({
               </option>
             ))}
           </select>
+
           <button
             data-testid="resetGenreFilter"
             onClick={() => onClear("genre")}
+            disabled={selectedGenre === defaultValue}
           >
             Reset
           </button>
         </div>
 
-        <div className="filter-year">
+        <div className="filter">
           <select
             data-testid="filterByYear"
             value={selectedYear}
             onChange={onYearChange}
           >
-            <option disabled value="-">
-              Selecciona un año
+            <option disabled value={defaultValue}>
+              Año
             </option>
             {yearOptions.map((year) => (
               <option key={year} value={year}>
@@ -67,14 +70,18 @@ export function Navigation({
               </option>
             ))}
           </select>
-          <button data-testid="resetYearFilter" onClick={() => onClear("year")}>
+          <button
+            data-testid="resetYearFilter"
+            onClick={() => onClear("year")}
+            disabled={selectedYear === defaultValue}
+          >
             Reset
           </button>
         </div>
 
-        <div className="filter-sortby">
+        <div className="filter">
           <select data-testid="sortBy" value={sortBy} onChange={onSortByChange}>
-            <option disabled value="-">
+            <option disabled value={defaultValue}>
               Ordenar por
             </option>
             <option value="original_title.asc">
@@ -110,9 +117,11 @@ export function Navigation({
             <option value="vote_count.asc">Conteo de votos Ascendente</option>
             <option value="vote_count.desc">Conteo de votos Descendente</option>
           </select>
+
           <button
             data-testid="resetSortByFilter"
             onClick={() => onClear("sortBy")}
+            disabled={sortBy === defaultValue}
           >
             Reset
           </button>

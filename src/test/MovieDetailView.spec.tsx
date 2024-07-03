@@ -34,17 +34,6 @@ describe("MovieDetailView", () => {
           <MovieDetailView />
         </Router>
       );
-
-      /*expect(getByTestId("movie-title")).toEqual(movieMock.title);
-      expect(getByTestId("movie-release-date")).toEqual(movieMock.releseaDate);
-      expect(getByTestId("movie-genre-" + movieMock.genres[0].id)).toEqual(
-        movieMock.genres[0].id
-      );
-      expect(getByTestId("movie-genre-" + movieMock.genres[0].id)).toEqual(
-        movieMock.genres[1].id
-      );
-      expect(getByTestId("movie-description")).toEqual(movieMock.description);
-      */
     });
   });
 });

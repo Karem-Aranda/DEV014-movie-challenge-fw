@@ -5,7 +5,6 @@ const genreListMock = [
   { id: 1, name: "Action" },
   { id: 2, name: "Adventure" },
 ];
-//const genreListFailMock = "API Error";
 
 jest.mock("../services/constants", () => ({ ApiKey: "mocked-token" }));
 
