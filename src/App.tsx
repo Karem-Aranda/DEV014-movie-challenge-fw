@@ -1,16 +1,18 @@
-//import { useState } from "react";
-//import.meta.env.VITE_TOKEN_API;
-import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { HomeView } from "./views/HomeView";
-import { MovieInformationView } from "./views/MovieInformationView";
+import { MovieDetailView } from "./views/MovieDetailView";
+import "./styles/index.scss";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomeView />} />
-        <Route path="/movie-information" element={<MovieInformationView />} />
+        <Route
+          //placeholder -  a esta ruta a parte va a contar con otro parametro
+          path="/movie-detail/:id"
+          element={<MovieDetailView />}
+        />
       </Routes>
     </BrowserRouter>
   );
