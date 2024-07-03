@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1719967683259" clover="3.2.0">
-  <project timestamp="1719967683259" name="All files">
-    <metrics statements="197" coveredstatements="144" conditionals="35" coveredconditionals="23" methods="54" coveredmethods="38" elements="286" coveredelements="205" complexity="0" loc="197" ncloc="197" packages="5" files="10" classes="10"/>
+<coverage generated="1719975500885" clover="3.2.0">
+  <project timestamp="1719975500885" name="All files">
+    <metrics statements="195" coveredstatements="142" conditionals="35" coveredconditionals="23" methods="54" coveredmethods="38" elements="284" coveredelements="203" complexity="0" loc="195" ncloc="195" packages="5" files="10" classes="10"/>
     <package name="components">
-      <metrics statements="32" coveredstatements="30" conditionals="7" coveredconditionals="6" methods="12" coveredmethods="11"/>
+      <metrics statements="30" coveredstatements="28" conditionals="7" coveredconditionals="6" methods="12" coveredmethods="11"/>
       <file name="Loader.tsx" path="/Users/karemara/Documents/DEV014-movie-challenge-fw/src/components/Loader.tsx">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="1" count="3" type="stmt"/>
@@ -19,7 +19,7 @@
         <line num="123" count="1" type="stmt"/>
       </file>
       <file name="Pagination.tsx" path="/Users/karemara/Documents/DEV014-movie-challenge-fw/src/components/Pagination.tsx">
-        <metrics statements="24" coveredstatements="22" conditionals="7" coveredconditionals="6" methods="5" coveredmethods="4"/>
+        <metrics statements="22" coveredstatements="20" conditionals="7" coveredconditionals="6" methods="5" coveredmethods="4"/>
         <line num="1" count="2" type="stmt"/>
         <line num="9" count="2" type="stmt"/>
         <line num="14" count="4" type="stmt"/>
@@ -39,11 +39,9 @@
         <line num="37" count="4" type="stmt"/>
         <line num="39" count="4" type="stmt"/>
         <line num="40" count="28" type="stmt"/>
-        <line num="41" count="28" type="stmt"/>
-        <line num="42" count="28" type="stmt"/>
-        <line num="45" count="6" type="stmt"/>
-        <line num="54" count="4" type="stmt"/>
-        <line num="76" count="4" type="stmt"/>
+        <line num="43" count="6" type="stmt"/>
+        <line num="52" count="4" type="stmt"/>
+        <line num="74" count="4" type="stmt"/>
       </file>
     </package>
     <package name="components.movie">
@@ -124,16 +122,16 @@
         <line num="22" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
         <line num="29" count="0" type="stmt"/>
-        <line num="37" count="0" type="stmt"/>
-        <line num="42" count="0" type="stmt"/>
-        <line num="44" count="0" type="stmt"/>
-        <line num="45" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="46" count="0" type="stmt"/>
-        <line num="50" count="0" type="stmt"/>
-        <line num="54" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="46" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
         <line num="55" count="0" type="stmt"/>
-        <line num="58" count="4" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
         <line num="59" count="4" type="stmt"/>
+        <line num="60" count="4" type="stmt"/>
       </file>
     </package>
     <package name="views">
